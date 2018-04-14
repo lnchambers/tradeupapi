@@ -45,6 +45,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'database_cleaner'
+  gem 'capybara'
 end
 
 group :development do
