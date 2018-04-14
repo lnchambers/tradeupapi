@@ -4,8 +4,8 @@ class Institution < ApplicationRecord
   has_many :graduations
   has_many :catalogs
   has_many :programs, through: :catalogs
-  enum type_of_institution: ['trade_school', 'lolnuthing', 'college']
-  enum tax_type: ['profit', 'not_for_profit']
+  enum type_of_institution: ['Trade School', 'Technical School', 'College']
+  enum tax_type: ['Profit', 'Not for Profit']
 
   def city
     address.split(",")[1].strip
