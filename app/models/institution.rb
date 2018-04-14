@@ -50,4 +50,14 @@ class Institution < ApplicationRecord
   def yearly_enrollments_data
     enrollments.ordered_by_year
   end
+
+  def programs_to_json
+    result = {}
+    result[:programs] = {}
+    programs.each do |p|
+      binding.pry
+      result[:programs].merge({ name: p.name })
+    end
+    result
+  end
 end

@@ -84,9 +84,10 @@ FastestCSV.open("./db/Degrees_Awarded_to_Post-Secondary_Graduates_in_Colorado.cs
     if values[2].to_i == 4
       puts "lol no"
     else
-      institution = Institution.find_or_create_by!(name: values[1], type_of_institution: values[2].to_i, tax_type: tax_type_format(values[5]), address: address_checker)
+      institution = Institution.find_or_create_by!(name: values[1], type_of_institution: values[2].to_i, tax_type: tax_type_format(values[5]), address: address_checker(values[1]))
       program = Program.find_or_create_by!(name: name_format(values[-2]))
-      Graduation.create!(institution: institution, program: program, year: values[0], max_age: values[10], min_age: values[9], gender: values[11], ethnicity: values[12], residency: values[-5], degree_level: values[13])
+      Catalog.find_or_create_by(institution: institution, program: program)
+      Graduation.create!(institution: institution, program: program, year: values[0], max_age: values[10], min_age: values[9], gender: values[11], ethnicity: values[12], residency: values[-6].to_i, degree_level: values[13])
     end
   end
 end
@@ -100,9 +101,10 @@ FastestCSV.open("./db/Enrollment_Demographics_for_Post-Secondary_Graduates_in_Co
     if values[2].to_i == 4
       puts "lol no"
     else
-      institution = Institution.find_or_create_by!(name: values[1], type_of_institution: values[2].to_i, tax_type: tax_type_format(values[5]), address: address_checker)
+      institution = Institution.find_or_create_by!(name: values[1], type_of_institution: values[2].to_i, tax_type: tax_type_format(values[5]), address: address_checker(values[1]))
       program = Program.find_or_create_by!(name: name_format(values[-2]))
-      Enrollment.create!(institution: institution, program: program, year: values[0], max_age: values[10], min_age: values[9], gender: values[11], ethnicity: values[12], residency: values[-5], degree_level: values[13])
+      Catalog.find_or_create_by(institution: institution, program: program)
+      Enrollment.create!(institution: institution, program: program, year: values[0], max_age: values[10], min_age: values[9], gender: values[11], ethnicity: values[12], residency: values[-6].to_i, degree_level: values[13])
     end
   end
 end
