@@ -8,19 +8,23 @@ class Institution < ApplicationRecord
   enum tax_type: ['Profit', 'Not for Profit']
 
   def city
-    address.split(",")[1].strip
+    a = address.split(",")[1]
+    a.strip unless a.nil?
   end
 
   def street_address
-    address.split(",")[0].strip
+    a = address.split(",")[0]
+    a.strip unless a.nil?
   end
 
   def state
-    address.split[-2].strip
+    a = address.split[-2]
+    a.strip unless a.nil?
   end
 
   def zip_code
-    address.split[-1].strip
+    a = address.split[-1]
+    a.strip unless a.nil?
   end
 
   def graduation_rate

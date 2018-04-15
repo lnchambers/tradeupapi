@@ -1,4 +1,4 @@
-class SchoolsController < ApplicationController
+class Api::V1::SchoolsController < ApplicationController
   def index
     institutions = Institution.all
     render json: InstitutionRequestService.new(params).index(institutions)
