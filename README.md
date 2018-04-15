@@ -1,24 +1,25 @@
-# README
+# TradeUP API Documentation
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The backend API for TradeUP, a website dedicated to building long term connections between trade schools and employers.
 
-Things you may want to cover:
+# Prerequisites
 
-* Ruby version
+There are currently no prerequisites for this API. Documentation will be updated if that changes.
 
-* System dependencies
+* GET `https://arcane-woodland-66839.herokuapp.com/api/v1/locations`
 
-* Configuration
+  - Returns a list of locations of trade schools currently in the system.
 
-* Database creation
+* GET `https://arcane-woodland-66839.herokuapp.com/api/v1/schools`
 
-* Database initialization
+  - Returns all trade schools currently in the system
+  - Sort by location using the parameters. For example, sending a GET request to `api/v1/schools?location=Denver` will return all locations located in Denver
 
-* How to run the test suite
+* GET `https://arcane-woodland-66839.herokuapp.com/api/v1/schools/<school_id>`
 
-* Services (job queues, cache servers, search engines, etc.)
+  - Returns a single trade school based off of the ID.
 
-* Deployment instructions
+# Concerns
 
-* ...
+- This API is in development. The documentation will be updated as development continues
+- The API is currently hosted on a server that times out after a certain period of inactivity. If a call made to this API is taking a while, give it a minute. The server will catch up to you and further requests made in active server mode will be much quicker
