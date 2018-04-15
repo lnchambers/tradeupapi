@@ -32,6 +32,7 @@ gem 'rack-cors'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'fastest-csv'
 gem 'active_model_serializers'
+gem 'omnicat-bayes'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

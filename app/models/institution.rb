@@ -28,15 +28,15 @@ class Institution < ApplicationRecord
   end
 
   def graduation_rate
-    (enrolled.count.to_f / graduated.count.to_f).round(2)
+    (enrolled / graduated).round(2)
   end
 
   def enrolled
-    enrolled ||= enrollments
+    enrolled ||= enrollments.count.to_f
   end
 
   def graduated
-    graduated ||= graduations
+    graduated ||= graduations.count.to_f
   end
 
   def graduates_per_year(year)
@@ -53,14 +53,5 @@ class Institution < ApplicationRecord
 
   def yearly_enrollments_data
     enrollments.ordered_by_year
-  end
-
-  def programs_to_json
-    result = {}
-    result[:programs] = {}
-    programs.each do |p|
-      result[:programs].merge({ name: p.name })
-    end
-    result
   end
 end
