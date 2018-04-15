@@ -10,16 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414172646) do
+ActiveRecord::Schema.define(version: 20180415170738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "businesses", force: :cascade do |t|
+    t.bigint "zip_id"
+    t.string "name"
+    t.string "location"
+    t.integer "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["zip_id"], name: "index_businesses_on_zip_id"
+  end
 
   create_table "catalogs", force: :cascade do |t|
     t.bigint "institution_id"
     t.bigint "program_id"
     t.index ["institution_id"], name: "index_catalogs_on_institution_id"
     t.index ["program_id"], name: "index_catalogs_on_program_id"
+  end
+
+  create_table "counties", force: :cascade do |t|
+    t.string "name"
+    t.integer "population_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "enrollments", force: :cascade do |t|
@@ -71,10 +88,22 @@ ActiveRecord::Schema.define(version: 20180414172646) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "zips", force: :cascade do |t|
+    t.integer "code"
+    t.bigint "county_id"
+    t.string "state"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["county_id"], name: "index_zips_on_county_id"
+  end
+
+  add_foreign_key "businesses", "zips"
   add_foreign_key "catalogs", "institutions"
   add_foreign_key "catalogs", "programs"
   add_foreign_key "enrollments", "institutions"
   add_foreign_key "enrollments", "programs"
   add_foreign_key "graduations", "institutions"
   add_foreign_key "graduations", "programs"
+  add_foreign_key "zips", "counties"
 end
