@@ -1,11 +1,12 @@
 class InstitutionRequestService
 
-  def initialize(params)
+  def initialize(params, institutions = nil)
     @params = params
+    @institutions = institutions
   end
 
-  def index(institutions)
-    institutions.map do |i|
+  def index
+    institutions_scope.map do |i|
       {
         :name => i.name,
         :type_of_institution => i.name,
@@ -38,6 +39,20 @@ class InstitutionRequestService
 
   private
 
-    attr_reader :params
+    attr_reader :params, :institutions
+
+    def institutions_scope
+      if params[:location]
+        institutions_by_location
+      else
+        institutions
+      end
+    end
+
+    def institutions_by_location
+      institutions.map do |i|
+        i if i.city == params[:location]
+      end.compact
+    end
 
 end
