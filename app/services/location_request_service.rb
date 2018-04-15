@@ -5,7 +5,6 @@ class LocationRequestService
   end
 
   def index
-    binding.pry
     refine_institutions
   end
 

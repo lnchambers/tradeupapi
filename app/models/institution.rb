@@ -59,7 +59,6 @@ class Institution < ApplicationRecord
     result = {}
     result[:programs] = {}
     programs.each do |p|
-      binding.pry
       result[:programs].merge({ name: p.name })
     end
     result
