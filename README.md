@@ -6,6 +6,8 @@ The backend API for TradeUP, a website dedicated to building long term connectio
 
 There are currently no prerequisites for this API. Documentation will be updated if that changes.
 
+# Endpoints
+
 * GET `https://arcane-woodland-66839.herokuapp.com/api/v1/locations`
 
   - Returns a list of locations of trade schools currently in the system.
