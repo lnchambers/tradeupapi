@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415170738) do
+ActiveRecord::Schema.define(version: 20180422233333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,10 +82,26 @@ ActiveRecord::Schema.define(version: 20180415170738) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "msas", force: :cascade do |t|
+    t.integer "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "programs", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "uas", force: :cascade do |t|
+    t.bigint "zip_id"
+    t.bigint "msa_id"
+    t.integer "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["msa_id"], name: "index_uas_on_msa_id"
+    t.index ["zip_id"], name: "index_uas_on_zip_id"
   end
 
   create_table "zips", force: :cascade do |t|
@@ -95,6 +111,7 @@ ActiveRecord::Schema.define(version: 20180415170738) do
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "ua"
     t.index ["county_id"], name: "index_zips_on_county_id"
   end
 
@@ -105,5 +122,7 @@ ActiveRecord::Schema.define(version: 20180415170738) do
   add_foreign_key "enrollments", "programs"
   add_foreign_key "graduations", "institutions"
   add_foreign_key "graduations", "programs"
+  add_foreign_key "uas", "msas"
+  add_foreign_key "uas", "zips"
   add_foreign_key "zips", "counties"
 end
