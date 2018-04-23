@@ -108,15 +108,42 @@
 #     end
 #   end
 # end
+#
+# FastestCSV.open("./db/data/zip_codes_states.csv") do |csv|
+#   fields = csv.shift
+#   i = 1
+#   while values = csv.shift
+#     puts "Seeding County Zips #{i}"
+#     i += 1
+#     values[-1] = "Not Found" if values[-1].nil?
+#     county = County.find_or_create_by!(name: values[-1])
+#     Zip.find_or_create_by!(county: county, city: values[-3], state: values[-2], code: values[0])
+#   end
+# end
+#
+# raw_trade_school_data.each do |i|
+#   puts "Seeding Trade Schools"
+#   Institution.find_or_create_by!(name: i[:name], type_of_institution: 0, address: "#{i[:address]}, Denver, CO 80202")
+# end
 
-FastestCSV.open("./db/data/zip_codes_states.csv") do |csv|
+FastestCSV.open('./db/data/2010_Urban_Area_to_ZIP_Code_Tabulation_Area_(ZCTA)_Relationship_File.csv') do |csv|
   fields = csv.shift
   i = 1
   while values = csv.shift
-    puts "Seeding County Zips #{i}"
+    puts "Seeding zip ##{i}"
     i += 1
-    values[-1] = "Not Found" if values[-1].nil?
-    county = County.find_or_create_by!(name: values[-1])
-    Zip.find_or_create_by!(county: county, city: values[-3], state: values[-2], code: values[0])
+    Zip.create!(code: values[2], ua: values[0])
+  end
+end
+
+FastestCSV.open("./db/data/ua_to_msa_conversion_data.csv") do |csv|
+  fields = csv.shift
+  i = 1
+  while values = csv.shift
+    puts "Seeding MSA and UA codes: #{i}"
+    i += 1
+    msa = Msa.create!(code: values[2])
+    zip = Zip.find_by(ua: values[0])
+    ua = Ua.create!(code: values[0], msa: msa, zip: zip)
   end
 end
