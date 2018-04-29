@@ -16,6 +16,7 @@ class InstitutionRequestService
         :contact_email => i.contact_email,
         :street_address => i.street_address,
         :state => i.state,
+        :city => i.city,
         :zip_code => i.zip_code,
         :graduation_rate => i.graduation_rate
       }
@@ -32,6 +33,7 @@ class InstitutionRequestService
       :contact_email => i.contact_email,
       :street_address => i.street_address,
       :state => i.state,
+      :city => i.city,
       :zip_code => i.zip_code,
       :graduation_rate => i.graduation_rate
     }
