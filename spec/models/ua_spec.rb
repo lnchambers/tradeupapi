@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Ua, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:zip) }
+  it { should belong_to(:msa) }
 end

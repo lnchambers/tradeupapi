@@ -18,15 +18,25 @@ describe "Schools API" do
     expect(response).to be_success
   end
 
-  it "can respond to show requests" do
+  it "can respond to show requests by id" do
     get "/api/v1/schools/5"
 
     expect(response).to be_success
   end
 
-  it "can respond to show requests" do
+  it "can respond to show requests by location" do
     get "/api/v1/schools?location=Greeley"
 
     expect(response).to be_success
+    parsed = JSON.parse(response.body, symbolize_names: true)
+    expect(parsed.count).to eq(2)
+    expect(parsed[1][:name]).to eq("Opakawagalaga Eupanifahorious")
+    expect(parsed[1][:type_of_institution]).to eq("Opakawagalaga Eupanifahorious")
+    expect(parsed[1][:school_type]).to eq("Not for Profit")
+    expect(parsed[1][:address]).to eq("5401 20th St, Greeley, CO 80634")
+    expect(parsed[1][:street_address]).to eq("5401 20th St")
+    expect(parsed[1][:state]).to eq("CO")
+    expect(parsed[1][:city]).to eq("Greeley")
+    expect(parsed[1][:zip_code]).to eq("80634")
   end
 end
