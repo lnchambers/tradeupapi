@@ -21,6 +21,10 @@ There are currently no prerequisites for this API. Documentation will be updated
 
   - Returns a single trade school based off of the ID.
 
+* POST `https://arcane-woodland-66839.herokuapp.com/api/v1/schools`
+
+  - Creates a school in the database
+
 # Concerns
 
 - This API is in development. The documentation will be updated as development continues
