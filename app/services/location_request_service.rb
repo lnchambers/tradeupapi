@@ -13,10 +13,8 @@ class LocationRequestService
   attr_reader :institutions
 
   def refine_institutions
-    n = 0
     institutions.map do |i|
-      n += 1
-      {"address #{n}" => i.city}
+      {"address" => i.city}
     end
   end
 
