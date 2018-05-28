@@ -18,7 +18,8 @@ class InstitutionRequestService
         :state => i.state,
         :city => i.city,
         :zip_code => i.zip_code,
-        :graduation_rate => i.graduation_rate
+        :graduation_rate => i.graduation_rate,
+        :programs => i.programs
       }
     end
   end
@@ -35,7 +36,8 @@ class InstitutionRequestService
       :state => i.state,
       :city => i.city,
       :zip_code => i.zip_code,
-      :graduation_rate => i.graduation_rate
+      :graduation_rate => i.graduation_rate,
+      :programs => i.programs
     }
   end
 

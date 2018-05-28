@@ -27,8 +27,13 @@ class Institution < ApplicationRecord
     a.strip unless a.nil?
   end
 
-  def graduation_rate
-    (enrolled / graduated).round(2)
+  def graduation_rate(year = 2015)
+    rate = (enrollments_per_year(year - 4) / graduates_per_year(year)).round(2)
+    if rate > 1
+      (rate - 1).round(2)
+    else
+      rate
+    end
   end
 
   def enrolled
@@ -40,7 +45,7 @@ class Institution < ApplicationRecord
   end
 
   def graduates_per_year(year)
-    graduations.where(year: year).count
+    graduations.where(year: year).count.to_f
   end
 
   def enrollments_per_year(year)
