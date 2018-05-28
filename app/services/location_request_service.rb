@@ -15,7 +15,7 @@ class LocationRequestService
   def refine_institutions
     institutions.map do |i|
       {"address" => i.city}
-    end
+    end.uniq
   end
 
 end
