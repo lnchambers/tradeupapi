@@ -53,7 +53,7 @@ class InstitutionRequestService
 
     def institutions_by_location
       institutions.map do |i|
-        i if i.city == params[:location]
+        i if i.city.downcase == params[:location].downcase
       end.compact
     end
 

@@ -4,6 +4,7 @@ describe "Schools API" do
   before :each do
     i_1 = create(:institution)
     i_2 = create(:institution, name: "Opakawagalaga Eupanifahorious")
+    i_2 = create(:institution, name: "Eupanifahorious Benefactoris", address: "5401 20th St, Fort Collins, CO 80634")
     prog = create(:program)
     prog_2 = create(:program, name: "Bennificatris")
     Catalog.create!(institution: i_1, program: prog)
